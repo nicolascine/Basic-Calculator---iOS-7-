@@ -25,7 +25,7 @@
 -(IBAction)pulsarNumero:(UIButton*)btn
 {
     
-    NSInteger num = btn.tag;
+    int num = btn.tag;
     
     if(num == 0 && total == 0)
     {
@@ -44,7 +44,7 @@
     }
     
     
-    NSString *numerocomoCandena = [NSString stringWithFormat: @"%li", num];
+    NSString *numerocomoCandena = [NSString stringWithFormat: @"%i", num];
     valordeCadena = [valordeCadena stringByAppendingString:numerocomoCandena];
     etiqueta.text = valordeCadena;
     
