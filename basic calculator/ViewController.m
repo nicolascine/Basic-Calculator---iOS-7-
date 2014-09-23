@@ -74,11 +74,6 @@
 
 -(IBAction)pulsarIgual:(id)sender{
     
-    
-    
-    
-
-    
     switch (modo) {
         case 0:
             return;
@@ -96,9 +91,6 @@
         default:
             break;
     }
-    
-    
-    
     
     valordeCadena = [NSString stringWithFormat: @"%i", total];
     
