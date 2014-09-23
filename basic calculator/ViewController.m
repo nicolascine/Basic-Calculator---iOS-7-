@@ -66,23 +66,39 @@
     
 }
 
+-(IBAction)pulsarMultiplicacion:(id)sender{
+    
+    [self asignarModo:2];
+    
+}
+
 -(IBAction)pulsarIgual:(id)sender{
     
-    if (modo == 0) {
-        return;
+    
+    
+    
+
+    
+    switch (modo) {
+        case 0:
+            return;
+            break;
+        case 1:
+            total += [valordeCadena intValue];
+            break;
+        case -1:
+            total -= [valordeCadena intValue];
+            break;
+        case 2:
+            total *= [valordeCadena intValue];
+            break;
+            
+        default:
+            break;
     }
     
-    if (modo == 1) {
-        
-        total += [valordeCadena intValue];
     
-    }
     
-    if (modo == -1) {
-    
-        total -= [valordeCadena intValue];
-    
-    }
     
     valordeCadena = [NSString stringWithFormat: @"%i", total];
     

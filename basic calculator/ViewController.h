@@ -25,6 +25,7 @@
 -(IBAction)pulsarNumero:(UIButton*)btn;
 -(IBAction)pulsarSuma:(id)sender;
 -(IBAction)pulsarResta:(id)sender;
+-(IBAction)pulsarMultiplicacion:(id)sender;
 -(IBAction)pulsarIgual:(id)sender;
 
 
