@@ -14,92 +14,98 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
     valordeCadena = @"";
 }
 
--(IBAction)pulsarNumero:(UIButton*)btn
-{
+-(IBAction)pulsarNumero:(UIButton*)btn{
     
     int num = btn.tag;
     
-    if(num == 0 && total == 0)
-    {
+    if(num == 0 && total == 0){
         return;
-        
-        
     }
     
-    
-    
-    if (ultimoModo)
-    {
-        
+    if (ultimoModo){
         ultimoModo = NO;
         valordeCadena = @"";
     }
     
-    
     NSString *numerocomoCandena = [NSString stringWithFormat: @"%i", num];
     valordeCadena = [valordeCadena stringByAppendingString:numerocomoCandena];
-    etiqueta.text = valordeCadena;
+    NSNumberFormatter *formato = [NSNumberFormatter new];
+    [formato setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber *n = [formato numberFromString:valordeCadena];
+    etiqueta.text = [formato stringFromNumber:n];
     
-    if (total == 0)
-    {
+    if (total == 0){
         total = [valordeCadena intValue];
     }
     
 }
 
--(IBAction)pulsarLimpiar:(id)sender
-{
+-(IBAction)pulsarLimpiar:(id)sender{
     
     total = 0;
     valordeCadena = @"";
     etiqueta.text = @"0";
-    
 }
--(IBAction)pulsarSuma:(id)sender
-{
+
+-(IBAction)pulsarSuma:(id)sender{
     
     [self asignarModo:1];
 }
 
--(IBAction)pulsarResta:(id)sender
-{
+-(IBAction)pulsarResta:(id)sender{
     
     [self asignarModo:-1];
     
 }
 
--(IBAction)pulsarIgual:(id)sender
-{
+-(IBAction)pulsarIgual:(id)sender{
+    
+    if (modo == 0) {
+        return;
+    }
+    
+    if (modo == 1) {
+        
+        total += [valordeCadena intValue];
+    
+    }
+    
+    if (modo == -1) {
+    
+        total -= [valordeCadena intValue];
+    
+    }
+    
+    valordeCadena = [NSString stringWithFormat: @"%i", total];
+    
+    NSNumberFormatter *formato = [NSNumberFormatter new];
+    [formato setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber *n = [formato numberFromString:valordeCadena];
+    etiqueta.text = [formato stringFromNumber:n];
+    modo = 0;
     
 }
 
--(void)asignarModo:(int)m
-{
+-(void)asignarModo:(int)m{
     
-    if (total == 0) {
+    if (total == 0){
         return;
     }
     
     modo = m;
     ultimoModo = YES;
     total = [valordeCadena intValue];
-    
-    
-    
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
